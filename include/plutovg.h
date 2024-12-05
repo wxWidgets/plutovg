@@ -25,6 +25,16 @@
 
 #include <stdbool.h>
 
+// Disable warnings about possible loss of data when converting int to float
+// Disable warnings about possible loss of data when converting size_t to int
+#ifdef _MSC_VER
+    #pragma warning(disable: 4244)
+    #pragma warning(disable: 4267)
+#elif defined(__GNUC__)
+    #pragma GCC diagnostic ignored "-Wconversion"
+    #pragma GCC diagnostic ignored "-Wsign-conversion"
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -40,11 +50,7 @@ extern "C" {
 #define PLUTOVG_IMPORT
 #endif
 
-#ifdef PLUTOVG_BUILD
-#define PLUTOVG_API PLUTOVG_EXPORT
-#else
-#define PLUTOVG_API PLUTOVG_IMPORT
-#endif
+#define PLUTOVG_API
 
 #define PLUTOVG_VERSION_MAJOR 0
 #define PLUTOVG_VERSION_MINOR 0
