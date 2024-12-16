@@ -505,6 +505,10 @@ int main(int arg, char **argv)
 #define STBTT_DEF extern
 #endif
 
+#if defined(__GNUC__) || defined(__clang__)
+#pragma GCC diagnostic ignored "-Wunused-function"
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
